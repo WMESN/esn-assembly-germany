@@ -319,7 +319,8 @@ export class VotingBallot extends Resource {
 export enum VotingMajorityTypes {
   RELATIVE = 'RELATIVE',
   SIMPLE = 'SIMPLE',
-  TWO_THIRDS = 'TWO_THIRDS'
+  THREE_FOURTH = 'THREE_FOURTH',
+  TWO_THIRD = "TWO_THIRD"
 }
 
 /**

@@ -1,0 +1,16 @@
+aws configure --profile esn-assembly-deutschland
+
+cdk bootstrap aws://109215170075/eu-central-1 --profile esn-assembly-deutschland
+
+
+aws ssm put-parameter --profile esn-assembly-deutschland --type "SecureString" --name "/esn-assembly-deutschland/auth" --value "asdfghjklpoiuytrewq123456789zxcvbnm"
+
+
+
+
+aws cloudfront list-distributions --profile esn-assembly-gede --output text \
+--query "DistributionList.Items[?Aliases.Items[0] == 'esn-germany-ga.de'].DomainName | [0]"
+
+
+aws --profile esn-assembly-deutschland --region us-east-1 acm request-certificate \
+--validation-method DNS --domain-name "esn-germany-ga.de" --subject-alternative-names "*.esn-germany-ga.de"

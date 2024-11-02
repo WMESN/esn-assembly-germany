@@ -34,7 +34,7 @@ export class FrontEndStack extends cdk.Stack {
     const zone = Route53.HostedZone.fromLookup(this, 'HostedZone', {
       domainName: props.domain.split('.').slice(-2).join('.')
     });
-
+    console.log("Before Problem");
     const certificate = props.certificateARN
       ? ACM.Certificate.fromCertificateArn(this, 'CloudFrontCertificate', props.certificateARN)
       : new ACM.DnsValidatedCertificate(this, 'Certificate', {
@@ -42,7 +42,7 @@ export class FrontEndStack extends cdk.Stack {
           hostedZone: zone,
           region: 'us-east-1'
         });
-
+    console.log("After Problem");
     const frontEndDistributionOAI = new CloudFront.OriginAccessIdentity(this, 'DistributionOAI', {
       comment: `OAI for https://${props.domain}`
     });

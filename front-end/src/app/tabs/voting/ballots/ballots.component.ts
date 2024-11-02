@@ -214,10 +214,14 @@ export class BallotsStandaloneComponent implements OnChanges, OnDestroy {
     if (this.votingSession.ballots[bIndex].majorityType === VotingMajorityTypes.RELATIVE) return winnerOptionIndex;
     if (this.votingSession.ballots[bIndex].majorityType === VotingMajorityTypes.SIMPLE)
       return this.getResultOfBallotOptionBasedOnRaw(bIndex, winnerOptionIndex) > 1 / 2 ? winnerOptionIndex : -1;
-    if (this.votingSession.ballots[bIndex].majorityType === VotingMajorityTypes.TWO_THIRDS)
+    if (this.votingSession.ballots[bIndex].majorityType === VotingMajorityTypes.THREE_FOURTH)
       // @todo this majority should be fixed in the Statutes (it's not possible to calculate "+1" with weighted voting)
+      return this.getResultOfBallotOptionBasedOnRaw(bIndex, winnerOptionIndex) > 3 / 4 ? winnerOptionIndex : -1;
+    if (this.votingSession.ballots[bIndex].majorityType === VotingMajorityTypes.TWO_THIRD)
+        // @todo this majority should be fixed in the Statutes (it's not possible to calculate "+1" with weighted voting)
       return this.getResultOfBallotOptionBasedOnRaw(bIndex, winnerOptionIndex) > 2 / 3 ? winnerOptionIndex : -1;
-  }
+
+    }
 
   handleBallotReorder({ detail }): void {
     this.votingSession.ballots = detail.complete(this.votingSession.ballots);

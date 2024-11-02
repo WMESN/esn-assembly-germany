@@ -449,6 +449,7 @@ export class ApiStack extends cdk.Stack {
       autoDeploy: true
     });
 
+    
     new ApiGw.CfnApiMapping(this, 'WebSocketApiMapping', {
       domainName: params.apiDomain,
       apiId: webSocketApi.apiId,
